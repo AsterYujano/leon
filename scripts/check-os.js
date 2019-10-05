@@ -33,10 +33,9 @@ export default () => new Promise(async (resolve, reject) => {
         await execa('curl', ['--version'])
         log.success('"curl" found')
       } else if (info.type === 'linux') {
-
-          if (process.env.LEON_OS==='fedora') {
-            await execa('dnf', ['--version'])
-            log.success('"dnf" found')
+          if (process.env.LEON_OS === 'fedora') {
+            await execa('yum', ['--version'])
+            log.success('"yum" found')
             await execa('wget', ['--version'])
             log.success('"wget" found')
           } else {
