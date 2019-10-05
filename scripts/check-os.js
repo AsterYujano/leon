@@ -33,10 +33,18 @@ export default () => new Promise(async (resolve, reject) => {
         await execa('curl', ['--version'])
         log.success('"curl" found')
       } else if (info.type === 'linux') {
-        await execa('apt-get', ['--version'])
-        log.success('"apt-get" found')
-        await execa('wget', ['--version'])
-        log.success('"wget" found')
+
+          if (process.env.LEON_OS==='fedora') {
+            await execa('dnf', ['--version'])
+            log.success('"dnf" found')
+            await execa('wget', ['--version'])
+            log.success('"wget" found')
+          } else {
+            await execa('apt-get', ['--version'])
+            log.success('"apt-get" found')
+            await execa('wget', ['--version'])
+            log.success('"wget" found')
+          }
       }
 
       resolve()

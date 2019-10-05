@@ -15,6 +15,10 @@ export default () => new Promise(async (resolve, reject) => {
     pkgm = 'brew'
   }
 
+  if (process.env.LEON_OS==='fedora') {
+    pkgm = 'dnf install'
+  }
+
   if (info.type === 'windows') {
     log.error('Voice offline mode is not available on Windows')
     reject()
